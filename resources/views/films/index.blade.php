@@ -50,7 +50,7 @@
                 </template>
                 <nav class="navbar navbar-expand-lg p-0 mb-5 my-4 flex flex-row justify-center">
                     <ul class="pagination mb-0 flex gap-4 my-4">
-                        <li class="page-item" :class="{ 'disabled': 1 == pagination.current_page }">
+                        <li class="page-item" :class="{ 'pointer-events-none': 1 == pagination.current_page }">
                             <a href="javascript:void(0)" class="page-link" aria-label="Previous"
                                 @click.prevent="changePage(pagination.current_page - 1)">
                                 <span class="bg-blue-300 text-white font-bold p-2 rounded-xl">Previous</span>
@@ -63,7 +63,7 @@
                             </li>
                         </template>
                         <li class="page-item"
-                            :class="{ 'disabled': pagination.last_page == pagination.current_page }">
+                            :class="{ 'pointer-events-none': pagination.last_page == pagination.current_page }">
                             <a href="javascript:void(0)" aria-label="Next" class="page-link"
                                 @click.prevent="changePage(pagination.current_page + 1)">
                                 <span aria-hidden="true"
