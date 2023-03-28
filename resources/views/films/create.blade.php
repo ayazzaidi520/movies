@@ -49,6 +49,7 @@
                                     @endfor
                                 </select>
                             </div>
+                            <x-error-message class="mt-2" x-text="errorMessages.rating" />
                             <div>
                                 <x-input-label for="ticket_price" :value="__('Ticket Price')" />
                                 <x-text-input id="ticket_price" name="ticket_price" type="text"
