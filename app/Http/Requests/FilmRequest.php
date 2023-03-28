@@ -25,7 +25,7 @@ class FilmRequest extends FormRequest
             'country' => ['required', 'max:255'],
             'description' => ['required'],
             'release_date' => ['required', 'date_format:Y-m-d'],
-            'ticket_price' => ['required', 'decimal:2', 'lt:1000000'],
+            'ticket_price' => ['required', 'lt:1000000'],
             'media_id' => "nullable",
         ];
     }
