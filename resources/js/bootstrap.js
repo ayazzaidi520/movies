@@ -12,6 +12,41 @@ window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+window.submitForm = () => {
+    return {
+        formData: {},
+        errorMessages: [],
+        isLoading: false,
+        isSuccess: false,
+        mainErrorMessage: null,
+
+        onSubmitPost(e) {
+            let storedata = new FormData(e.target);
+            this.isLoading = true;
+            axios.post(e.target.action, storedata)
+                .then(response => {
+                    this.errorMessages = [];
+                    if (response.status == 201) {
+                        this.isSuccess = true;
+                        setTimeout(() => {
+                            window.location.href = response.data.data?.slug ? response.data.data.slug : window.location;
+                        }, 1000);
+                    } else {
+                        this.isLoading = false;
+                    }
+                })
+                .catch(error => {
+                    this.mainErrorMessage = error.response.data.message;
+                    if (error.response.status !== 500) {
+                        this.errorMessages = error.response.data.errors;
+                    }
+                    this.isLoading = false;
+                });
+        }
+    }
+}
+
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
